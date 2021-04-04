@@ -10,7 +10,7 @@ namespace N00695523cumulativePartOne.Models
         // Model containing objects that will be used for teachers.
 
         public int TeacherId;
-        public string TeacherFullName;
+        public string TeacherFullName; // Test to pass info to github.
         public string EmployeeNumber;
         public DateTime HireDate;
         public decimal Salary;
