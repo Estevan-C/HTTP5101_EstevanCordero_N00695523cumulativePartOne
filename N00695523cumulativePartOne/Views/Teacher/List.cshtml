@@ -1,0 +1,19 @@
+﻿@model List<N00695523cumulativePartOne.Models.Teacher>
+
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Teachers</h2>
+@{ 
+    foreach (var Teacher in Model)
+    {
+        <div class="listitem row">
+            <div class="col-md-12">
+                <h2><a href="/Teacher/Show/@Teacher.TeacherId">@Teacher.TeacherFullName</a></h2>
+            </div>
+        </div>
+    }
+
+}

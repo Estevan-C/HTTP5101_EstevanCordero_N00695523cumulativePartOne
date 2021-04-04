@@ -1,0 +1,31 @@
+﻿@model IEnumerable<N00695523cumulativePartOne.Models.Student>
+
+@{
+    ViewBag.Title = "List";
+  
+}
+<head>
+    @Scripts.Render("~/Scripts/studentValidation.js")
+    <!--Call to the JS we are using for this page.-->
+</head>
+
+<div id="containerlist">
+    <h2>List of Students</h2>
+    <form action="/Student/List" id="formStudent" method="GET">
+        <label for="searchName">Please Enter A Name:</label>
+        <input type="text" id="in_Name" name="SearchKey" autocomplete="off" />
+        <input type="submit" value="Search" />
+    </form>
+
+    @foreach (var student in Model)
+    {
+        <div class="listitem row">
+            <div class="col-md-12">
+                <h3><a href="/Student/Show/@student.StudentId">@student.StudentFName @student.StudentLName</a></h3>
+            </div>
+        </div>
+    }
+
+</div>
+
+
