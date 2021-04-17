@@ -1,0 +1,52 @@
+﻿@model N00695523cumulativePartOne.Models.Teacher
+
+@{
+    ViewBag.Title = "AJAX Update";
+    @Styles.Render("~/Content/Site.css")
+    <!--Call to the CSS we are using for this page.-->
+    <script src="https://kit.fontawesome.com/6be63762e1.js" crossorigin="anonymous"></script>
+    <!--Just to add some Icons-->
+
+    @Scripts.Render("~/Scripts/ajaxTeacher.js")
+}
+
+<div id="containershow">
+
+    <nav>
+        <a class="listOption" href="/Teacher/List"><i class="fas fa-chalkboard-teacher"></i> Back to Teachers List</a>
+    </nav>
+
+    <h2>Update @Model.TeacherFirstName @Model.TeacherLastName</h2>
+
+    <div class="inputrow">
+        <label for="TeacherFname">First Name:</label>
+        <input type="text" id="TeacherFname" name="TeacherFname" value="@Model.TeacherFirstName" />
+    </div>
+
+    <div class="inputrow">
+        <label for="TeacherLname">Last Name:</label>
+        <input type="text" id="TeacherLname" name="TeacherLname" value="@Model.TeacherLastName" />
+    </div>
+
+    <div class="inputrow">
+        <label for="TeacherEmployeeNumber">Employee Number:</label>
+        <input type="text" id="TeacherEmployeeNumber" name="TeacherEmployeeNumber" value="@Model.EmployeeNumber" />
+    </div>
+
+    <div class="inputrow">
+        <label for="TeacherHireDate">Hire Date:</label>
+        <div>
+            <input type="date" id="TeacherHireDate" name="TeacherHireDate" value="@Model.HireDate" />
+        </div>
+    </div>
+
+    <div class="inputrow">
+        <label for="TeacherSalary">Salary:</label>
+        <div>
+            <input type="number" id="TeacherSalary" name="TeacherSalary" value="@Model.Salary" />
+        </div>
+    </div>
+
+    <button onclick="UpdateTeacher(@Model.TeacherId);">Update Teacher</button>
+</div>
+

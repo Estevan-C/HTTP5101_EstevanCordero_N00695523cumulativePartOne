@@ -1,40 +1,40 @@
-﻿
+﻿@model N00695523cumulativePartOne.Models.Student
+
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Update";
     @Styles.Render("~/Content/Site.css")
     <!--Call to the CSS we are using for this page.-->
     <script src="https://kit.fontawesome.com/6be63762e1.js" crossorigin="anonymous"></script>
     <!--Just to add some Icons-->
-    @Scripts.Render("~/Scripts/newStudentValidation.js")
-    <!--Call to the JS we are using for this page.-->
 }
 
 <div id="containershow">
     <nav>
         <a class="listOption" href="/Student/List"><i class="fas fa-school"></i> Back to Students List</a>
     </nav>
-    <h2>New Teacher</h2>
-    <form id="studentForm" method="POST" action="/Student/Create">
+    <h2>Update Student</h2>
+    <form method="POST" action="/Student/Update/@Model.StudentId">
         <div class="inputrow">
             <label for="StudentFname">First Name:</label>
-            <input type="text" id="StudentFname" name="StudentFname" /><span id="errorMsgFirstName"></span>
+            <input type="text" id="StudentFname" name="TeacherFname" value="@Model.StudentFName" />
         </div>
         <div class="inputrow">
             <label for="StudentLname">Last Name:</label>
-            <input type="text" id="StudentLname" name="StudentLname" /><span id="errorMsgLastName"></span>
+            <input type="text" id="StudentLname" name="StudentLname" value="@Model.StudentLName" />
         </div>
         <div class="inputrow">
             <label for="StudentNumber">Student Number:</label>
-            <input type="text" id="StudentNumber" name="StudentNumber" placeholder="N" /><span id="errorMsgNumber"></span>
+            <input type="text" id="StudentNumber" name="StudentNumber" value="@Model.StudentNumber" />
         </div>
         <div class="inputrow">
             <label for="StudentEnrolDate">Enrolment Date:</label>
-            <input type="date" id="StudentEnrolDate" name="StudentEnrolDate" /><span id="errorMsgDate"></span>
+            <div>
+                <input type="date" id="StudentEnrolDate" name="StudentEnrolDate" value="@Model.EnrolDate" />
+            </div>
         </div>
         <div class="inputrow">
-            <input type="submit" value="Create Student" />
+            <input type="submit" value="Update Student" />
         </div>
     </form>
 </div>
-
 

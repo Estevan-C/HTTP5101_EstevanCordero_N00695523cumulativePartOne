@@ -62,7 +62,7 @@ namespace N00695523cumulativePartOne.Controllers
 
         //POST: /Student/Create
         [HttpPost]
-        public ActionResult Create(string StudentFname, string StudentLname, string StudentNumber, string EnrolDate)
+        public ActionResult Create(string StudentFname, string StudentLname, string StudentNumber, String EnrolDate)
         {
 
             /*// Identify the inputs and methods are running.
@@ -74,6 +74,8 @@ namespace N00695523cumulativePartOne.Controllers
             // Debug.WriteLine(EnrolDate.Date);
             // DateTime EnrolDate
             // When being passed in the parameters it expects only a Date but DateTime is the only data type*/
+            // How do I grab only the date from DateTime from paremeter input?
+
 
             Student NewStudent = new Student();
             NewStudent.StudentFName = StudentFname;
@@ -87,6 +89,45 @@ namespace N00695523cumulativePartOne.Controllers
 
 
             return RedirectToAction("List");
+        }
+
+        /// <summary>
+        /// Route to the view page based on the student id that is selected.
+        /// </summary>
+        /// <param name="id">Id of the Student</param>
+        /// <returns>The information on the student base on the id.</returns>
+        /// <example>GET: /Student/Update/1</example>
+        public ActionResult Update(int id)
+        {
+            StudentDataController controller = new StudentDataController();
+            Student SelectedStudent = controller.FindStudent(id);
+
+            return View(SelectedStudent);
+        }
+
+
+        /// <summary>
+        /// A post request containing the information of the student.
+        /// </summary>
+        /// <param name="id">Student Id</param>
+        /// <param name="StudentFname">Student First Name</param>
+        /// <param name="StudentLname">Student Last Name</param>
+        /// <param name="StudentNumber">Student Number</param>
+        /// <param name="EnrolDate">Student Enrolment Date</param>
+        /// <returns>To a web page that contains the information on the student</returns>
+        [HttpPost]
+        public ActionResult Update(int id, string StudentFname, string StudentLname, string StudentNumber, DateTime EnrolDate)
+        {
+            Student StudentInfo = new Student();
+            StudentInfo.StudentFName = StudentFname;
+            StudentInfo.StudentLName = StudentLname;
+            StudentInfo.StudentNumber = StudentNumber;
+            StudentInfo.EnrolDate = EnrolDate.Date; // Only Grab the date from DateTime
+
+            StudentDataController controller = new StudentDataController();
+            controller.UpdateStudent(id, StudentInfo);
+
+            return RedirectToAction("Show/" + id);
         }
     }
 }

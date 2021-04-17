@@ -86,6 +86,56 @@ namespace N00695523cumulativePartOne.Controllers
 
             return RedirectToAction("List");
         }
-        
+
+        /// <summary>
+        /// Route to the view page based on the teacher id that is selected.
+        /// </summary>
+        /// <param name="id">Id of the Teacher</param>
+        /// <returns>The information on the teacher base on the id.</returns>
+        /// <example>GET: /Teacher/Update/1</example>
+        public ActionResult Update(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            Teacher SelectedTeacher = controller.FindTeacher(id);
+
+            return View(SelectedTeacher);
+        }
+
+        public ActionResult Ajax_Update(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            Teacher SelectedTeacher = controller.FindTeacher(id);
+
+            return View(SelectedTeacher);
+        }
+
+        /// <summary>
+        /// A post request containing the information of the teacher.
+        /// </summary>
+        /// <param name="id">Teacher Id</param>
+        /// <param name="TeacherFname">Teacher first name</param>
+        /// <param name="TeacherLname">Teacher last name</param>
+        /// <param name="TeacherEmployeeNumber">Teacher employee number</param>
+        /// <param name="TeacherHireDate">Teacher hire date</param>
+        /// <param name="TeacherSalary">Teacher salary</param>
+        /// <returns>To a webpage that contains the information on the teacher.</returns>
+        [HttpPost]
+        public ActionResult Update(int id, string TeacherFname, string TeacherLname, string TeacherEmployeeNumber, DateTime TeacherHireDate, decimal TeacherSalary)
+        {
+            Teacher TeacherInfo = new Teacher();
+            TeacherInfo.TeacherFirstName = TeacherFname;
+            TeacherInfo.TeacherLastName = TeacherLname;
+            TeacherInfo.EmployeeNumber = TeacherEmployeeNumber;
+            TeacherInfo.HireDate = TeacherHireDate;
+            TeacherInfo.Salary = TeacherSalary;
+
+            TeacherDataController controller = new TeacherDataController();
+            controller.UpdateTeacher(id, TeacherInfo);
+
+            return RedirectToAction("Show/" + id);
+
+        }
+
     }
+
 }

@@ -157,13 +157,55 @@ namespace N00695523cumulativePartOne.Controllers
             cmd.Parameters.AddWithValue("@StudentFname", NewStudent.StudentFName);
             cmd.Parameters.AddWithValue("@StudentLname", NewStudent.StudentLName);
             cmd.Parameters.AddWithValue("@StudentNumber", NewStudent.StudentNumber);
-            cmd.Parameters.AddWithValue("@EnrolDate", NewStudent.EnrolDate.Date);
+            cmd.Parameters.AddWithValue("@EnrolDate", NewStudent.EnrolDate);
             //Even if no value is entered since it can accept null it will display the first date it can be display.
+            // for the mysql convert the date time into something that it can understand 
+            // string mydateconvert = datetime.ToString("yyyy-mm-dd")
+            // my sql doesn't want to figure so you must tell what the date is and is expecting a format so the c# will have to
+            // do the proccess and understanding google how convert a datetime into a string
             cmd.Prepare();
 
             cmd.ExecuteNonQuery();
 
             // Close connection
+            Conn.Close();
+        }
+
+        /// <summary>
+        /// Updates an existing information for a Student
+        /// </summary>
+        /// <param name="id">Student Id</param>
+        /// <param name="StudentInfo">Student info that will be passed</param>
+        /// <example>
+        /// Fred
+        /// Robert
+        /// N123456
+        /// April 30 2021
+        /// 1(Id does not need to be updated only the content of the Teacher does)
+        /// </example>
+        [HttpPost]
+        public void UpdateStudent(int id, Student StudentInfo)
+        {
+            //Create an instance of a connnection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //Open connection
+            Conn.Open();
+
+            //Establish a command (query) for the database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL Query
+            cmd.CommandText = "update students set studentfname=@StudentFname, studentlname=@StudentLname, studentnumber=@StudentNumber, enroldate=@EnrolDate where studentid=@StudentId";
+            cmd.Parameters.AddWithValue("@StudentFname", StudentInfo.StudentFName);
+            cmd.Parameters.AddWithValue("@StudentLname", StudentInfo.StudentLName);
+            cmd.Parameters.AddWithValue("@StudentNumber", StudentInfo.StudentNumber);
+            cmd.Parameters.AddWithValue("@EnrolDate", StudentInfo.EnrolDate); // Come back with teachers advics on how to fix date problem
+            cmd.Parameters.AddWithValue("@StudentId", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
             Conn.Close();
         }
 

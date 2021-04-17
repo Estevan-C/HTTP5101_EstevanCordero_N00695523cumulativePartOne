@@ -7,6 +7,7 @@ using System.Web.Http;
 using N00695523cumulativePartOne.Models;
 using MySql.Data.MySqlClient;
 
+
 namespace N00695523cumulativePartOne.Controllers
 {
     public class TeacherDataController : ApiController
@@ -169,6 +170,48 @@ namespace N00695523cumulativePartOne.Controllers
             cmd.ExecuteNonQuery();
 
             // Close connection
+            Conn.Close();
+        }
+
+
+        /// <summary>
+        /// Updates an existing information for a Teacher
+        /// </summary>
+        /// <param name="id">Teacher Id</param>
+        /// <param name="TeacherInfo">Teachers info that will be updated</param>
+        /// <example>
+        /// Estevan
+        /// Cordero
+        /// T000
+        /// April 2 2021
+        /// 20.00
+        /// 1(Id does not need to be updated only the content of the Teacher does)
+        /// </example>
+        [HttpPost]
+        //[Route("api/TeacherData/UpdateTeacher/{id}")] // This avoids the 404 error, but instead gives me 
+        public void UpdateTeacher(int id, Teacher TeacherInfo)
+        {
+            //Create an instance of a connnection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //Open connection
+            Conn.Open();
+
+            //Establish a command (query) for the database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL Query
+            cmd.CommandText = "update teachers set teacherfname=@TeacherFname, teacherlname=@TeacherLname, employeenumber=@TeacherEmployeeNumber, hiredate=@TeacherHireDate, salary=@TeacherSlary where teacherid=@TeacherId";
+            cmd.Parameters.AddWithValue("@TeacherFname", TeacherInfo.TeacherFirstName);
+            cmd.Parameters.AddWithValue("@TeacherLname", TeacherInfo.TeacherLastName);
+            cmd.Parameters.AddWithValue("@TeacherEmployeeNumber", TeacherInfo.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@TeacherHireDate", TeacherInfo.HireDate);
+            cmd.Parameters.AddWithValue("@TeacherSlary", TeacherInfo.Salary);
+            cmd.Parameters.AddWithValue("@TeacherId", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
             Conn.Close();
         }
     }

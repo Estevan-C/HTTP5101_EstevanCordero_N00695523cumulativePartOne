@@ -222,9 +222,13 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images_of_debugging\404_error_msg_for_ajax_update_teacher.JPG" />
+    <Content Include="Images_of_debugging\error_204_nothing_is_being_sent_for_update.JPG" />
+    <Content Include="Images_of_debugging\new_ajax_error_data_is_not_being_updated.JPG" />
     <Content Include="Images_of_debugging\teacher_test_to_access_inputs.JPG" />
     <Content Include="Images_of_debugging\student_test_to_access_inputs_n_method.JPG" />
     <Content Include="Images_of_debugging\teacher_test_to_access_method.JPG" />
+    <Content Include="Scripts\ajaxTeacher.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -246,6 +250,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Wireframe_images\wireframe_for_shown_teacher.JPG" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\newStudentValidation.js" />
     <Content Include="Scripts\newTeacherValidation.js" />
@@ -278,6 +283,9 @@
     <Content Include="Views\Teacher\New.cshtml" />
     <Content Include="Views\Student\DeleteConfirm.cshtml" />
     <Content Include="Views\Student\New.cshtml" />
+    <Content Include="Views\Teacher\Update.cshtml" />
+    <Content Include="Views\Student\Update.cshtml" />
+    <Content Include="Views\Teacher\Ajax_Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

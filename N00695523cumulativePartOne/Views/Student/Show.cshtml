@@ -15,6 +15,8 @@
         <a class="deleteOption" href="/Student/DeleteConfirm/@Model.StudentId"><i class="fas fa-trash"></i> Delete This Student?</a>
         <a class="listOption" href="/Student/List"><i class="fas fa-school"></i> Back to Students List</a>
     </nav>
+    <a class="newOption" href="/Student/Update/@Model.StudentId"><i class="fas fa-user-edit"></i>Update</a>
+
     <h2>@Model.StudentId @Model.StudentFName @Model.StudentLName</h2>
     <h3>Student Number: @Model.StudentNumber</h3>
     <h3>Student Enrolment Date: @Model.EnrolDate.ToString("dd-MMM-yyyy")</h3>
