@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "New";
+    @Styles.Render("~/Content/Site.css")
+    <!--Call to the CSS we are using for this page.-->
+    <script src="https://kit.fontawesome.com/6be63762e1.js" crossorigin="anonymous"></script>
+    <!--Just to add some Icons-->
+    @Scripts.Render("~/Scripts/newTeacherValidation.js")
+    <!--Call to the JS we are using for this page.-->
+}
+
+<div id="containershow">
+    <nav>
+        <a class="listOption" href="/Teacher/List"><i class="fas fa-chalkboard-teacher"></i> Back To Teacher</a>
+    </nav>
+    <h2>New Teacher</h2>
+    <form id="teacherForm" method="POST" action="/Teacher/Create">
+        <div class="inputrow">
+            <label for="TeacherFname">First Name:</label>
+            <input type="text" id="TeacherFname" name="TeacherFname" /><span id="errorMsgFirstName"></span>
+        </div>
+        <div class="inputrow">
+            <label for="TeacherLname">Last Name:</label>
+            <input type="text" id="TeacherLname" name="TeacherLname" /><span id="errorMsgLastName"></span>
+        </div>
+        <div class="inputrow">
+            <label for="TeacherEmployeeNumber">Employee Number:</label>
+            <input type="text" id="TeacherEmployeeNumber" name="TeacherEmployeeNumber" /><span id="errorMsgNumber"></span>
+        </div>
+        <div class="inputrow">
+            <label for="TeacherHireDate">Hire Date:</label>
+            <input type="date" id="TeacherHireDate" name="TeacherHireDate" /><span id="errorMsgDate"></span>
+        </div>
+        <div class="inputrow">
+            <label for="TeacherSalary">Salary:</label>
+            <input type="number" min="0" max="100" value="0" step=".10" id="TeacherSalary" name="TeacherSalary" /><span id="errorMsgSalary"></span>
+        </div>
+        <div class="inputrow">
+            <input type="submit" value="Create Teacher" />
+        </div>
+    </form>
+</div>
+

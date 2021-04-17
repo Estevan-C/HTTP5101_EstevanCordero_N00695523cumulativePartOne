@@ -3,9 +3,19 @@
 @{
     ViewBag.Title = "Show";
 }
+<head>
+    @Styles.Render("~/Content/Site.css")
+    <!--Call to the CSS we are using for this page.-->
+    <script src="https://kit.fontawesome.com/6be63762e1.js" crossorigin="anonymous"></script>
+    <!--Just to add some Icons-->
+</head>
 
 <div id="containershow">
-    <h2>@Model.TeacherId @Model.TeacherFullName</h2>
+    <nav>
+        <a class="deleteOption" href="/Teacher/DeleteConfirm/@Model.TeacherId"><i class="fas fa-trash"></i> Delete This Teacher?</a>
+        <a class="listOption" href="/Teacher/List"><i class="fas fa-chalkboard-teacher"></i> Back to Teachers List</a>
+    </nav>
+    <h2>@Model.TeacherId @Model.TeacherFirstName @Model.TeacherLastName</h2>
     <h3>Employee Number: @Model.EmployeeNumber</h3>
     <h3>Hire Date: @Model.HireDate</h3>
     <h3>Salary: @Model.Salary</h3>

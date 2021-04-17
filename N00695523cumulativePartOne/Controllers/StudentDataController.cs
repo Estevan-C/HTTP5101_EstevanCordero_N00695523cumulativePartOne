@@ -53,7 +53,7 @@ namespace N00695523cumulativePartOne.Controllers
                 NewStudent.StudentFName = ResultSet["studentfname"].ToString();
                 NewStudent.StudentLName = ResultSet["studentlname"].ToString();
                 NewStudent.StudentNumber = ResultSet["studentnumber"].ToString();
-                NewStudent.EnrolDate = Convert.ToDateTime(ResultSet["enroldate"]);
+                //NewStudent.EnrolDate = Convert.ToDateTime(ResultSet["enroldate"]);
 
                 Students.Add(NewStudent);
             }
@@ -100,6 +100,71 @@ namespace N00695523cumulativePartOne.Controllers
             }
 
             return NewStudent;
+        }
+
+        /// <summary>
+        /// Deletes a Student based on the ID that was entered.
+        /// </summary>
+        /// <param name="id">The id of the student.</param>
+        /// <example>POST api/StudentData/DeleteStudent/1</example>
+        [HttpPost]
+        public void DeleteStudent(int id)
+        {
+            // Create a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // Open the connection
+            Conn.Open();
+
+            // Create a command (query) to execute
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            // SQL QUERY
+            cmd.CommandText = "Delete from students where studentid=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            // Close connection
+            Conn.Close();
+        }
+
+        /// <summary>
+        /// Inserts user input as Values for the Student Table.
+        /// </summary>
+        /// <param name="NewStudent">Values being passed</param>
+        /// <example>
+        /// Estevan
+        /// Cordero
+        /// 123456
+        /// 2021-04-02 12:00AM
+        /// </example>
+        [HttpPost]
+        public void AddStudent(Student NewStudent)
+        {
+            // Create a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // Open the connection
+            Conn.Open();
+
+            // Create a command (query) to execute
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            // SQL QUERY
+            cmd.CommandText = "insert into students (studentfname, studentlname, studentnumber, enroldate) values (@StudentFname, @StudentLname, @StudentNumber, @EnrolDate)";
+            cmd.Parameters.AddWithValue("@StudentFname", NewStudent.StudentFName);
+            cmd.Parameters.AddWithValue("@StudentLname", NewStudent.StudentLName);
+            cmd.Parameters.AddWithValue("@StudentNumber", NewStudent.StudentNumber);
+            cmd.Parameters.AddWithValue("@EnrolDate", NewStudent.EnrolDate.Date);
+            //Even if no value is entered since it can accept null it will display the first date it can be display.
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            // Close connection
+            Conn.Close();
         }
 
     }

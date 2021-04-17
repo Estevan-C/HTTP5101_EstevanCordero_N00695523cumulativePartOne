@@ -15,3 +15,55 @@ select,
 textarea {
     max-width: 280px;
 }
+/*General Layout CSS*/
+nav {
+    overflow:hidden;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.deleteOption {
+    color:darkred;
+    float:right;
+    font-size:25px;
+}
+.listOption {
+    float: left;
+    font-size: 25px;
+}
+.cancelOption {
+    font-size: 25px;
+}
+.newOption {
+    font-size: 25px;
+    margin-top: 200px;
+}
+#containershow, p {
+    font-size:20px;
+}
+
+.delbutton {
+    display: block;
+    font-size:20px;
+    background: #dd1111;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 3px;
+    margin-bottom:30px;
+}
+
+/*New Teacher Form CSS */
+#teacherForm input[type=text] {
+    margin-bottom:20px;
+}
+#teacherForm input[type=date] {
+    margin-bottom: 20px;
+}
+#teacherForm input[type=number] {
+    margin-bottom: 20px;
+}
+
+/*New Student Form CSS*/
+#studentForm input[type=text] {
+    margin-bottom: 20px;
+}

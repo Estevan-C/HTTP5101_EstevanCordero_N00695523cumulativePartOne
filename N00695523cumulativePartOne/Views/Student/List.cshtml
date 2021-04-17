@@ -5,10 +5,16 @@
   
 }
 <head>
-    @Scripts.Render("~/Scripts/studentValidation.js")
+    @Scripts.Render("~/Scripts/studentListValidation.js")
     <!--Call to the JS we are using for this page.-->
+    @Styles.Render("~/Content/Site.css")
+    <!--Call to the CSS we are using for this page.-->
+    <script src="https://kit.fontawesome.com/6be63762e1.js" crossorigin="anonymous"></script>
+    <!--Just to add some Icons-->
 </head>
-
+<nav>
+    <a class="newOption" href="/Student/New"><i class="fas fa-plus-square"></i> Submit a New Student</a>
+</nav>
 <div id="containerlist">
     <h2>List of Students</h2>
     <form action="/Student/List" id="formStudent" method="GET">

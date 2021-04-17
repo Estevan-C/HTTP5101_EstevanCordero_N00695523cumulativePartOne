@@ -3,10 +3,20 @@
 @{
     ViewBag.Title = "Show";
 }
+<head>
+    @Styles.Render("~/Content/Site.css")
+    <!--Call to the CSS we are using for this page.-->
+    <script src="https://kit.fontawesome.com/6be63762e1.js" crossorigin="anonymous"></script>
+    <!--Just to add some Icons-->
+</head>
 
 <div id="containershow">
+    <nav>
+        <a class="deleteOption" href="/Student/DeleteConfirm/@Model.StudentId"><i class="fas fa-trash"></i> Delete This Student?</a>
+        <a class="listOption" href="/Student/List"><i class="fas fa-school"></i> Back to Students List</a>
+    </nav>
     <h2>@Model.StudentId @Model.StudentFName @Model.StudentLName</h2>
     <h3>Student Number: @Model.StudentNumber</h3>
-    <h3>Student Enrolment Date: @Model.EnrolDate</h3>
+    <h3>Student Enrolment Date: @Model.EnrolDate.ToString("dd-MMM-yyyy")</h3>
 </div>
 

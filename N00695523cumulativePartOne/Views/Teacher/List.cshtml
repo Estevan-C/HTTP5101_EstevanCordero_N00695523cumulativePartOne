@@ -4,14 +4,30 @@
 @{
     ViewBag.Title = "List";
 }
+<head>
+    @Scripts.Render("~/Scripts/teacherListValidation.js")
+    <!--Call to the JS we are using for this page.-->
+    @Styles.Render("~/Content/Site.css")
+    <!--Call to the CSS we are using for this page.-->
+    <script src="https://kit.fontawesome.com/6be63762e1.js" crossorigin="anonymous"></script>
+    <!--Just to add some Icons-->
+</head>
 
+<nav>
+    <a class="newOption" href="/Teacher/New"><i class="fas fa-plus-square"></i> Submit a New Teacher</a>
+</nav>
 <h2>List of Teachers</h2>
-@{ 
+<form action="/Teacher/List" id="formTeacher" method="GET">
+    <label for="searchName">Search for a Teacher:</label>
+    <input type="text" id="in_Name" name="SearchKey" autocomplete="off" />
+    <input type="submit" value="Search" />
+</form>
+@{
     foreach (var Teacher in Model)
     {
         <div class="listitem row">
             <div class="col-md-12">
-                <h2><a href="/Teacher/Show/@Teacher.TeacherId">@Teacher.TeacherFullName</a></h2>
+                <h2><a href="/Teacher/Show/@Teacher.TeacherId">@Teacher.TeacherFirstName @Teacher.TeacherLastName</a></h2>
             </div>
         </div>
     }

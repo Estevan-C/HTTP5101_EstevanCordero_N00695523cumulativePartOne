@@ -1,0 +1,29 @@
+﻿@model N00695523cumulativePartOne.Models.Student
+
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+    <script src="https://kit.fontawesome.com/6be63762e1.js" crossorigin="anonymous"></script>
+    <!--Just to add some Icons-->
+    @Styles.Render("~/Content/Site.css")
+    <!--Call to the CSS we are using for this page.-->
+}
+
+<h2>Confirm Delete</h2>
+
+<div id="containershow">
+    <h2 class="studenSpace">
+        Are you sure you want to delete
+        @Model.StudentNumber
+        @Model.StudentFName
+        @Model.StudentLName
+    </h2>
+    <p>This action cannot be undone.</p>
+    <form method="POST" action="/Student/Delete/@Model.StudentId">
+        <button class="delbutton">
+            Confirm Delete
+        </button>
+    </form>
+    <a class="cancelOption" href="/Student/Show/@Model.StudentId"><i class="fas fa-times-circle"></i> Cancel</a>
+
+</div>

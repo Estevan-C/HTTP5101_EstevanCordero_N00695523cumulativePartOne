@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using N00695523cumulativePartOne.Models;
+using System.Diagnostics;
 
 namespace N00695523cumulativePartOne.Controllers
 {
@@ -16,11 +17,11 @@ namespace N00695523cumulativePartOne.Controllers
         }
 
         // GET: Teacher/List
-        public ActionResult List()
+        public ActionResult List(string SearchKey = null)
         {
             // Call to TeacherDataController method ListTeachers, and pass information to the View(List).
             TeacherDataController controller = new TeacherDataController();
-            List<Teacher> Teachers = controller.ListTeachers();
+            IEnumerable<Teacher> Teachers = controller.ListTeachers(SearchKey);
             return View(Teachers);
         }
 
@@ -34,6 +35,57 @@ namespace N00695523cumulativePartOne.Controllers
             return View(TeachersInfo);
         }
 
+
+        // GET: /Teacher/DeleteConfirm/{id}
+        public ActionResult DeleteConfirm(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            Teacher NewTeacher = controller.FindTeacher(id);
+
+            return View(NewTeacher);
+        }
+
+
+        //POST: /Teacher/Delete/{id}
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            controller.DeleteTeacher(id);
+            return RedirectToAction("List");
+        }
+
+        //GET: /Teacher/New
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        //POST: /Teacher/Create
+        [HttpPost]
+        public ActionResult Create(string TeacherFname, string TeacherLname, string TeacherEmployeeNumber, DateTime TeacherHireDate, decimal TeacherSalary)
+        {
+            /*// Identify the inputs and methods are running.
+
+            Debug.WriteLine("I have access the create method!");
+            Debug.WriteLine(TeacherFname);
+            Debug.WriteLine(TeacherLname);
+            Debug.WriteLine(TeacherEmployeeNumber);
+            Debug.WriteLine(TeacherHireDate);
+            Debug.WriteLine(TeacherSalary);*/
+
+            Teacher NewTeacher = new Teacher();
+            NewTeacher.TeacherFirstName = TeacherFname;
+            NewTeacher.TeacherLastName = TeacherLname;
+            NewTeacher.EmployeeNumber = TeacherEmployeeNumber;
+            NewTeacher.HireDate = TeacherHireDate;
+            NewTeacher.Salary = TeacherSalary;
+
+            TeacherDataController controller = new TeacherDataController();
+            controller.AddTeacher(NewTeacher);
+
+            return RedirectToAction("List");
+        }
         
     }
 }
